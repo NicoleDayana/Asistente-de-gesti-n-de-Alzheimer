@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 # Permisos mínimos necesarios para publicar en GitHub Pages.
@@ -50,6 +52,8 @@ jobs:
 
   deploy:
     name: Deploy
+    # En los pull request solo se valida la compilación; el despliegue es exclusivo de main.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:

@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-contigo-50: #eef8ff;
+  --color-contigo-100: #d9efff;
+  --color-contigo-200: #bce4ff;
+  --color-contigo-300: #8ed4ff;
+  --color-contigo-400: #59bbff;
+  --color-contigo-500: #329dff;
+  --color-contigo-600: #1c7ef5;
+  --color-contigo-700: #1566e1;
+  --color-contigo-800: #1853b6;
+  --color-contigo-900: #1a488f;
+  --font-sans: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #0b1220;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+canvas {
+  touch-action: none;
+}
+
+/* Animaciones de la interfaz */
+@keyframes contigo-pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes contigo-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contigo-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-fade-in {
+  animation: contigo-fade-in 0.35s ease-out both;
+}
+
+.animate-blink {
+  animation: contigo-blink 1s ease-in-out infinite;
+}
+
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: contigo-pulse-ring 1.6s ease-out infinite;
+}
+
+/* Scrollbars suaves para los paneles */
+.nice-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.nice-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+}
+.nice-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}

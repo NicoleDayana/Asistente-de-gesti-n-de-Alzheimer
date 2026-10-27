@@ -9,7 +9,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
+// base relativo para que el sitio funcione en GitHub Pages aunque el
+// repositorio se publique bajo /nombre-del-repositorio/.
 export default defineConfig({
+  base: "./",
+  // Permite vistas previas detrás de proxies/hosts temporales (entornos de desarrollo).
+  preview: { allowedHosts: true },
+  server: { allowedHosts: true },
   plugins: [react(), tailwindcss(), viteSingleFile()],
   resolve: {
     alias: {
